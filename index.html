@@ -34,8 +34,8 @@
     <main>
       <section class="diagnosis-band" id="snapshot" aria-labelledby="diagnosisTitle">
         <div class="diagnosis-copy">
-          <p class="eyebrow">Research finance cockpit</p>
-          <h2 id="diagnosisTitle"><span>GrantPilot.</span> Decide what science to fund next.</h2>
+          <p class="eyebrow">Board-ready research finance</p>
+          <h2 id="diagnosisTitle"><span>Stop funding everything.</span> Fund the science that survives the runway.</h2>
           <p id="diagnosisText">Loading GrantPilot scenario...</p>
           <div class="quick-actions" aria-label="Primary workflow">
             <a class="btn btn-primary" href="#scenario">Tune scenario</a>
@@ -43,50 +43,63 @@
             <a class="btn" href="#ask">Ask GrantPilot</a>
             <a class="btn" href="#boardMemo">Board memo</a>
           </div>
+          <div class="proof-grid" aria-label="Why GrantPilot is different">
+            <div>
+              <span>Computed before GPT</span>
+              <strong>Cashflow, FTE, Monte Carlo</strong>
+            </div>
+            <div>
+              <span>Real lab constraints</span>
+              <strong>Manpower, CRO, facility queues</strong>
+            </div>
+          </div>
         </div>
         <div class="decision-strip" aria-label="Current plan versus GrantPilot plan">
           <div>
             <span class="strip-label">Current plan</span>
             <strong id="currentRunway">--</strong>
             <span id="currentRisk">--</span>
+            <small>All projects stay active</small>
           </div>
           <div>
             <span class="strip-label">GrantPilot plan</span>
             <strong id="optimizedRunway">--</strong>
             <span id="optimizedRisk">--</span>
+            <small>Capital allocated under lab capacity</small>
           </div>
-          <div>
+          <div class="recommendation-card">
             <span class="strip-label">Recommendation</span>
             <strong id="decisionCount">--</strong>
             <span id="decisionSummary">--</span>
+            <small>Board-ready decision, then GPT memo</small>
           </div>
         </div>
       </section>
 
-      <section class="category-rail" aria-label="GrantPilot workflow shortcuts">
+      <section class="category-rail" aria-label="GrantPilot demo flow">
         <a href="#scenario">
-          <span>Cash</span>
-          <strong>Scenario</strong>
+          <span>01</span>
+          <strong>Tune assumptions</strong>
         </a>
         <a href="#optimizer">
-          <span>3</span>
-          <strong>Strategies</strong>
+          <span>02</span>
+          <strong>Optimize portfolio</strong>
         </a>
         <a href="#risk">
-          <span>%</span>
-          <strong>Risk</strong>
+          <span>03</span>
+          <strong>Verify risk</strong>
         </a>
         <a href="#portfolio">
-          <span>6</span>
-          <strong>Projects</strong>
+          <span>04</span>
+          <strong>Inspect projects</strong>
         </a>
         <a href="#ask">
-          <span>AI</span>
-          <strong>Ask</strong>
+          <span>05</span>
+          <strong>Ask scenarios</strong>
         </a>
         <a href="#boardMemo">
-          <span>PDF</span>
-          <strong>Memo</strong>
+          <span>06</span>
+          <strong>Generate memo</strong>
         </a>
       </section>
 
