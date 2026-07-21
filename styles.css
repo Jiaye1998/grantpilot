@@ -643,6 +643,27 @@ canvas {
   align-items: center;
 }
 
+.sensitivity-row {
+  grid-template-columns: minmax(128px, 0.78fr) minmax(150px, 0.9fr) minmax(220px, 1.35fr);
+  align-items: start;
+  gap: 10px;
+}
+
+.sensitivity-row strong {
+  line-height: 1.22;
+}
+
+.sensitivity-row .bar-track {
+  margin-top: 6px;
+}
+
+.sensitivity-row .row-meta {
+  min-width: 0;
+  white-space: normal;
+  text-align: left;
+  line-height: 1.35;
+}
+
 .bar-track {
   height: 9px;
   overflow: hidden;
