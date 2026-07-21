@@ -10,6 +10,8 @@ Project title: GrantPilot: AI CFO for Scientific R&D Portfolios
 
 Primary customer: seed-stage biotech companies, translational research labs, university spinouts, and grant-funded scientific teams with limited runway and too many competing projects.
 
+Submission status: runnable MVP, MIT licensed public repository, judge testing guide, Devpost description, and demo script are included in this repo. The Devpost form should also include the public demo URL, the public YouTube video URL, and the main Codex `/feedback` Session ID.
+
 ## What The MVP Does
 
 - Models real lab costs across manpower, consumables, core facility usage, equipment, animal/sample work, compute/data, outsourcing/CRO, overhead, and fixed lab operations.
@@ -37,6 +39,19 @@ Then open:
 
 ```text
 http://127.0.0.1:8780/
+```
+
+If port 8780 is already in use:
+
+```powershell
+$env:PORT="8781"
+node server.js
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8781/
 ```
 
 No package install is required for the current static MVP.
@@ -119,10 +134,23 @@ See `GRANTPILOT_REQUIREMENTS.md` for the full project and hackathon checklist.
 
 See `SUBMISSION_NOTES.md` for judge testing notes and `DEMO_SCRIPT.md` for the 3-minute video outline.
 
-Before submission, add:
+This repository is prepared for judging with:
 
-- A public or judge-accessible repository URL.
-- A demo video under 3 minutes with audio.
-- Clear explanation of Codex and GPT-5.6 usage.
-- The main `/feedback` Codex Session ID.
-- Setup and testing instructions for judges.
+- A runnable web app with no dependency install required.
+- Optional GPT-5.6 runtime through `server.js`.
+- Deterministic fallback behavior so the demo can be tested without credentials.
+- MIT license for public repository review.
+- README, Devpost description, judge testing instructions, and demo script in English.
+
+External Devpost fields still supplied outside the repository:
+
+- Public demo URL.
+- Public YouTube video URL.
+- Main Codex `/feedback` Session ID.
+
+## Judging Criteria Map
+
+- Technological Implementation: deterministic cashflow and capacity model, portfolio optimizer, Monte Carlo simulation, sensitivity analysis, GPT-5.6 memo endpoint, and local fallback mode.
+- Design: one complete decision workflow from scenario, risk, optimizer, project inspection, Ask GrantPilot, and board memo.
+- Potential Impact: focused on real scientific teams that must survive scarce funding, staffing limits, CRO delays, facility queues, and grant reimbursement timing.
+- Quality of the Idea: finance-style portfolio allocation applied to scientific R&D before money is committed, not accounting after spend has happened.

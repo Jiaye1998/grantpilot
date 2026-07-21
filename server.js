@@ -3,7 +3,7 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");
 
-const root = __dirname;
+const root = path.resolve(__dirname);
 const port = Number(process.env.PORT || 8780);
 const host = process.env.HOST || "127.0.0.1";
 const openaiModel = process.env.OPENAI_MODEL || "gpt-5.6";
@@ -24,10 +24,16 @@ const contentTypes = {
 };
 
 function safePath(urlPath) {
-  const decoded = decodeURIComponent(urlPath.split("?")[0]);
+  let decoded;
+  try {
+    decoded = decodeURIComponent(urlPath || "/");
+  } catch {
+    return null;
+  }
   const requested = decoded === "/" ? "/index.html" : decoded;
   const resolved = path.resolve(root, `.${requested}`);
-  if (!resolved.startsWith(root)) return null;
+  const relative = path.relative(root, resolved);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) return null;
   return resolved;
 }
 
@@ -172,7 +178,9 @@ async function callOpenAI(payload) {
 }
 
 const server = http.createServer((request, response) => {
-  if (request.url === "/api/gpt/status" && request.method === "GET") {
+  const parsedUrl = new URL(request.url || "/", `http://${request.headers.host || "localhost"}`);
+
+  if (parsedUrl.pathname === "/api/gpt/status" && request.method === "GET") {
     writeJson(response, 200, {
       configured: Boolean(process.env.OPENAI_API_KEY),
       model: openaiModel,
@@ -181,7 +189,7 @@ const server = http.createServer((request, response) => {
     return;
   }
 
-  if (request.url === "/api/gpt" && request.method === "POST") {
+  if (parsedUrl.pathname === "/api/gpt" && request.method === "POST") {
     readJsonBody(request)
       .then(callOpenAI)
       .then((payload) => writeJson(response, 200, payload))
@@ -192,7 +200,7 @@ const server = http.createServer((request, response) => {
     return;
   }
 
-  const filePath = safePath(request.url || "/");
+  const filePath = safePath(parsedUrl.pathname);
   if (!filePath) {
     response.writeHead(403);
     response.end("Forbidden");

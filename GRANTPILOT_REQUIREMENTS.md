@@ -62,7 +62,7 @@ A translational biotech / university spinout has USD 1.2M cash, 7 people, and 6 
 
 GrantPilot models real lab costs and finds:
 
-- Current plan runs out of cash in 9 months.
+- Current plan runs out of cash in about 8.8 months.
 - Wet-lab scientist and animal technician capacity are overallocated.
 - Animal facility capacity is the limiting resource in months 4-7.
 - CRO and animal-study cost overruns are the biggest cash-shortfall drivers.
@@ -72,14 +72,14 @@ GrantPilot recommends:
 - Fund 3 projects.
 - Pause 2 projects.
 - Stop 1 project.
-- Reduce burn by about 25-30%.
-- Extend runway from about 9 months to about 15 months.
+- Reduce burn from about USD 137k per month to about USD 78k per month.
+- Extend runway from about 8.8 months to about 15.4 months.
 - Preserve a strong chance of reaching at least one meaningful scientific milestone.
 
 The demo should show a clear before/after:
 
-- Current plan: overcommitted team, 9-month runway, high cash shortfall risk.
-- GrantPilot plan: focused portfolio, 15-month runway, lower cash shortfall risk.
+- Current plan: overcommitted team, 8.8-month runway, high cash shortfall risk.
+- GrantPilot plan: focused portfolio, 15.4-month runway, lower cash shortfall risk.
 
 ## 5. MVP Scope
 
@@ -434,31 +434,31 @@ Hackathon:
 
 ## 15. 3-Minute Demo Outline
 
-0:00-0:20
+0:00-0:18
 
 Introduce the problem: scientific teams have limited capital, too many projects, and unclear runway.
 
-0:20-0:50
+0:18-0:42
 
 Show the current lab scenario: USD 1.2M cash, 7 people, 6 R&D projects. GrantPilot flags overcommitment.
 
-0:50-1:30
+0:42-1:10
 
 Show real lab cost modeling: manpower, consumables, animal work, CRO, compute, overhead, and restricted funding.
 
-1:30-2:00
+1:10-1:30
 
 Show optimization results: fund 3, pause 2, stop 1. Compare current plan vs GrantPilot plan.
 
-2:00-2:25
+1:30-1:45
 
 Show Monte Carlo risk and sensitivity analysis: runway distribution, cash shortfall risk, top drivers.
 
-2:25-2:50
+1:45-1:58
 
 Show Ask GrantPilot and Board Meeting Mode memo.
 
-2:50-3:00
+1:58-2:05
 
 Close with how Codex and GPT-5.6 were used.
 
@@ -475,4 +475,3 @@ Scientific teams waste time and money when research ambition is not matched with
 Technical statement:
 
 GrantPilot combines deterministic cashflow and capacity modeling, constraint-based portfolio selection, Monte Carlo simulation, sensitivity analysis, and GPT-5.6-generated decision memos. Codex is used throughout development to implement, test, refine, and document the product.
-

@@ -8,7 +8,7 @@ Track: Work and Productivity
 
 ## Quick Start
 
-No dependency install is required.
+No dependency install is required. If the Devpost submission includes a hosted URL, open that first. If the hosted version is static, the deterministic model works directly in the browser and the optional GPT runtime can be tested locally with `server.js`.
 
 Run:
 
@@ -47,6 +47,18 @@ Without an API key:
 4. Board Meeting Mode and Ask GrantPilot use deterministic fallback text.
 
 This fallback is intentional so judges can test the product even without credentials.
+
+## Expected Baseline Results
+
+The default scenario should show approximately:
+
+1. Current plan burn: USD 137k per month.
+2. Current plan runway: 8.8 months.
+3. GrantPilot balanced plan burn: USD 78k per month.
+4. GrantPilot balanced plan runway: 15.4 months.
+5. Reserve breach risk improves from roughly 85% to roughly 42% under stated Monte Carlo assumptions.
+
+Small differences can occur if scenario controls are changed.
 
 ## Optional GPT Runtime
 
@@ -191,3 +203,7 @@ Current limitations:
 5. GitHub Pages static hosting can show the app, but cannot run the optional local GPT server endpoint.
 
 The core purpose of the MVP is to demonstrate the product category and the decision flow.
+
+## Compliance Notes
+
+GrantPilot does not use third-party private data. The demo scenario is synthetic. The GPT memo endpoint receives structured model outputs from the app and is used for communication, not for choosing the portfolio. The project is available under the MIT License.

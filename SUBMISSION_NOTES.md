@@ -10,6 +10,8 @@ GrantPilot helps scientific R&D teams decide what to fund, what to pause, what t
 
 The demo scenario is a translational biotech / university spinout with USD 1.2M cash, 7 people, and 6 competing R&D projects.
 
+Default result: the current all-project plan burns about USD 137k per month and reaches about 8.8 months of runway. The GrantPilot balanced plan burns about USD 78k per month and reaches about 15.4 months of runway while preserving a strong milestone path.
+
 ## How To Run
 
 No install is required for the static fallback demo.
@@ -72,7 +74,7 @@ Human decisions:
 ## Judge Test Path
 
 1. Open the app.
-2. Confirm the current all-project plan shows runway around 9 months.
+2. Confirm the current all-project plan shows runway around 8.8 months.
 3. Confirm Balanced Portfolio recommends funding assay automation, AI drug screening, and pharma partner pilot.
 4. Adjust cash down to trigger Emergency Bridge Plan.
 5. Review Model Audit.
@@ -83,3 +85,11 @@ Human decisions:
 Financing reserve breach risk is the probability that cash falls below the USD 420k operating reserve within 24 months under stated Monte Carlo assumptions.
 
 GrantPilot stress-tests assumptions. It does not claim to predict scientific success.
+
+## Devpost Fields To Supply Outside The Repo
+
+- Public demo URL.
+- Public YouTube video URL for the final video.
+- Main Codex `/feedback` Session ID.
+- Track/category: Work and Productivity.
+- Repository URL: https://github.com/Jiaye1998/grantpilot
