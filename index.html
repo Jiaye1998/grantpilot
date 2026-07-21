@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GrantPilot: AI CFO for Scientific R&amp;D Portfolios</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand-lockup" aria-label="GrantPilot">
+        <div class="brand-mark">GP</div>
+        <div>
+          <p class="eyebrow">GrantPilot</p>
+          <h1>AI CFO for Scientific R&amp;D Portfolios</h1>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="track-pill">Work and Productivity MVP</span>
+        <button class="btn btn-primary" id="jumpMemoBtn" type="button">Board Meeting Mode</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="diagnosis-band" aria-labelledby="diagnosisTitle">
+        <div class="diagnosis-copy">
+          <p class="eyebrow">Current plan stress test</p>
+          <h2 id="diagnosisTitle">Your lab is overcommitted.</h2>
+          <p id="diagnosisText">Loading GrantPilot scenario...</p>
+        </div>
+        <div class="decision-strip" aria-label="Current plan versus GrantPilot plan">
+          <div>
+            <span class="strip-label">Current plan</span>
+            <strong id="currentRunway">--</strong>
+            <span id="currentRisk">--</span>
+          </div>
+          <div>
+            <span class="strip-label">GrantPilot plan</span>
+            <strong id="optimizedRunway">--</strong>
+            <span id="optimizedRisk">--</span>
+          </div>
+          <div>
+            <span class="strip-label">Recommendation</span>
+            <strong id="decisionCount">--</strong>
+            <span id="decisionSummary">--</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="CFO snapshot">
+        <article class="metric-card">
+          <span>Cash on hand</span>
+          <strong id="cashOnHand">--</strong>
+          <small>Unrestricted and milestone-backed cash</small>
+        </article>
+        <article class="metric-card">
+          <span>Current monthly burn</span>
+          <strong id="currentBurn">--</strong>
+          <small>All 6 projects active</small>
+        </article>
+        <article class="metric-card">
+          <span>Optimized monthly burn</span>
+          <strong id="optimizedBurn">--</strong>
+          <small id="burnDelta">--</small>
+        </article>
+        <article class="metric-card">
+          <span>Capacity bottleneck</span>
+          <strong id="topBottleneck">--</strong>
+          <small id="bottleneckContext">--</small>
+        </article>
+      </section>
+
+      <section class="section-block scenario-panel" aria-labelledby="scenarioTitle">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Editable scenario</p>
+            <h2 id="scenarioTitle">Stress-test the plan before a board or grant meeting</h2>
+          </div>
+          <button class="btn" id="resetScenarioBtn" type="button">Reset scenario</button>
+        </div>
+        <div class="scenario-grid">
+          <label class="control-field" for="cashInput">
+            <span>Cash on hand</span>
+            <input id="cashInput" type="number" min="250000" max="3000000" step="50000">
+          </label>
+          <label class="control-field" for="reserveInput">
+            <span>Operating reserve</span>
+            <input id="reserveInput" type="number" min="100000" max="1000000" step="25000">
+          </label>
+          <label class="control-field" for="wetlabRange">
+            <span>Wet-lab scientist capacity <strong id="wetlabValue">--</strong></span>
+            <input id="wetlabRange" type="range" min="1" max="4" step="0.25">
+          </label>
+          <label class="control-field" for="croRange">
+            <span>CRO / outsourcing cost <strong id="croValue">--</strong></span>
+            <input id="croRange" type="range" min="0.75" max="1.5" step="0.05">
+          </label>
+          <label class="toggle-field" for="animalToggle">
+            <input id="animalToggle" type="checkbox">
+            <span>Animal validation is in scope</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="workspace-grid">
+        <section class="section-block" aria-labelledby="strategyTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Portfolio optimizer</p>
+              <h2 id="strategyTitle">Choose a capital allocation strategy</h2>
+            </div>
+            <div class="strategy-tabs" role="group" aria-label="Strategy">
+              <button class="btn strategy-tab" type="button" data-strategy="survival">Survival</button>
+              <button class="btn strategy-tab" type="button" data-strategy="balanced">Balanced</button>
+              <button class="btn strategy-tab" type="button" data-strategy="breakthrough">Breakthrough</button>
+            </div>
+          </div>
+
+          <div class="strategy-summary" id="strategySummary"></div>
+
+          <div class="project-actions" aria-label="Project recommendations">
+            <div>
+              <span class="status-dot fund"></span>
+              <strong>Fund</strong>
+              <p id="fundList">--</p>
+            </div>
+            <div>
+              <span class="status-dot pause"></span>
+              <strong>Pause</strong>
+              <p id="pauseList">--</p>
+            </div>
+            <div>
+              <span class="status-dot stop"></span>
+              <strong>Stop</strong>
+              <p id="stopList">--</p>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <div class="chart-title">
+              <div>
+                <h3>Cash runway comparison</h3>
+                <p>Deterministic cashflow under stated cost and milestone assumptions.</p>
+              </div>
+            </div>
+            <canvas id="cashChart" height="260" aria-label="Cash runway chart" role="img"></canvas>
+          </div>
+        </section>
+
+        <aside class="section-block" aria-labelledby="riskTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Monte Carlo risk</p>
+              <h2 id="riskTitle">Stress-test uncertainty</h2>
+            </div>
+          </div>
+          <div class="risk-stats">
+            <div>
+              <span>Financing reserve breach</span>
+              <strong id="shortfallRisk">--</strong>
+            </div>
+            <div>
+              <span>Major milestone chance</span>
+              <strong id="milestoneChance">--</strong>
+            </div>
+            <div>
+              <span>Runway range</span>
+              <strong id="runwayRange">--</strong>
+            </div>
+          </div>
+          <div class="chart-wrap compact-chart">
+            <canvas id="runwayChart" height="220" aria-label="Runway distribution chart" role="img"></canvas>
+          </div>
+          <div class="assumptions-panel">
+            <h3>Scenario assumptions</h3>
+            <ul>
+              <li>Cost overruns sampled by project risk level.</li>
+              <li>Duration delays sampled by experiment phase and resource bottlenecks.</li>
+              <li>Milestone outcomes sampled from success probability ranges.</li>
+              <li>Grant and partner payments arrive only after milestone success.</li>
+              <li>Reserve breach means cash falls below the $420k operating reserve within 24 months.</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <section class="two-column">
+        <section class="section-block" aria-labelledby="costTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Real lab cost builder</p>
+              <h2 id="costTitle">Cost categories in the selected plan</h2>
+            </div>
+          </div>
+          <div class="cost-stack" id="costStack"></div>
+        </section>
+
+        <section class="section-block" aria-labelledby="fteTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Skill-based FTE</p>
+              <h2 id="fteTitle">Capacity and bottlenecks</h2>
+            </div>
+          </div>
+          <div class="fte-list" id="fteList"></div>
+          <div class="resource-warning" id="resourceWarning">--</div>
+        </section>
+      </section>
+
+      <section class="section-block" aria-labelledby="projectTitle">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Project portfolio</p>
+            <h2 id="projectTitle">Six R&amp;D bets with real execution constraints</h2>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="project-table">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Decision</th>
+                <th>Milestone</th>
+                <th>Phase plan</th>
+                <th>Success range</th>
+                <th>Duration</th>
+                <th>Monthly lab cost</th>
+                <th>Key constraint</th>
+              </tr>
+            </thead>
+            <tbody id="projectTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="two-column align-start">
+        <section class="section-block" aria-labelledby="whyTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">CFO rationale</p>
+              <h2 id="whyTitle">Why not fund everything?</h2>
+            </div>
+          </div>
+          <div class="why-list" id="whyNotAllList"></div>
+        </section>
+
+        <section class="section-block" aria-labelledby="auditTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Model Audit</p>
+              <h2 id="auditTitle">What is computed before GPT writes</h2>
+            </div>
+          </div>
+          <div class="audit-list" id="modelAuditList"></div>
+          <div class="gpt-status" id="gptStatus">GPT-5.6 optional runtime: checking server status...</div>
+        </section>
+      </section>
+
+      <section class="two-column align-start">
+        <section class="section-block" aria-labelledby="sensitivityTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Sensitivity analysis</p>
+              <h2 id="sensitivityTitle">What drives portfolio risk</h2>
+            </div>
+          </div>
+          <div class="sensitivity-list" id="sensitivityList"></div>
+        </section>
+
+        <section class="section-block" aria-labelledby="askTitle">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Ask GrantPilot</p>
+              <h2 id="askTitle">Scenario questions for PI or founder decisions</h2>
+            </div>
+          </div>
+          <div class="question-buttons" id="questionButtons">
+            <button class="btn" type="button" data-question="Can we keep the animal study and still reach 12 months of runway?">Keep animal study?</button>
+            <button class="btn" type="button" data-question="What if we delay the animal study by 3 months?">Delay animal 3 months</button>
+            <button class="btn" type="button" data-question="Which single hire improves the portfolio most?">Best single hire</button>
+            <button class="btn" type="button" data-question="What should I tell the board?">Board summary</button>
+          </div>
+          <label class="input-label" for="askInput">Question</label>
+          <textarea id="askInput" rows="3" placeholder="Ask about runway, staffing, bottlenecks, or project tradeoffs."></textarea>
+          <button class="btn btn-primary" id="askButton" type="button">Generate answer</button>
+          <div class="answer-box" id="askAnswer" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <section class="section-block memo-section" id="boardMemo" aria-labelledby="memoTitle">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Board Meeting Mode</p>
+            <h2 id="memoTitle">CFO memo generated from structured model outputs</h2>
+          </div>
+          <button class="btn" id="refreshMemoBtn" type="button">Generate GPT memo</button>
+        </div>
+        <div class="memo-output" id="memoOutput"></div>
+      </section>
+    </main>
+  </body>
+</html>
