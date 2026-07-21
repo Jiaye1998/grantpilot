@@ -1569,9 +1569,45 @@ const GrantPilot = (() => {
     }
   }
 
+  function initNavigationState() {
+    const links = Array.from(document.querySelectorAll(".top-nav a"));
+    const sections = links
+      .map((link) => {
+        const id = link.getAttribute("href")?.replace("#", "");
+        return id ? { id, link, section: document.getElementById(id) } : null;
+      })
+      .filter((item) => item && item.section);
+
+    if (!sections.length) return;
+
+    const setActive = (id) => {
+      sections.forEach((item) => {
+        if (item.id === id) item.link.setAttribute("aria-current", "true");
+        else item.link.removeAttribute("aria-current");
+      });
+    };
+
+    setActive(sections[0].id);
+
+    if (!("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-24% 0px -58% 0px", threshold: [0.1, 0.25, 0.5] }
+    );
+
+    sections.forEach((item) => observer.observe(item.section));
+  }
+
   function init() {
     applyScenario();
     syncScenarioControls();
+    initNavigationState();
     const debouncedScenarioUpdate = debounce(readScenarioControls, 250);
     ["cashInput", "reserveInput", "wetlabRange", "croRange", "animalToggle"].forEach((id) => {
       const node = document.getElementById(id);

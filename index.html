@@ -16,6 +16,14 @@
           <h1>AI CFO for Scientific R&amp;D Portfolios</h1>
         </div>
       </div>
+      <nav class="top-nav" aria-label="GrantPilot sections">
+        <a href="#scenario">Scenario</a>
+        <a href="#optimizer">Optimizer</a>
+        <a href="#risk">Risk</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#ask">Ask</a>
+        <a href="#boardMemo">Memo</a>
+      </nav>
       <div class="header-actions">
         <span class="track-pill">Work and Productivity MVP</span>
         <button class="btn btn-primary" id="jumpMemoBtn" type="button">Board Meeting Mode</button>
@@ -23,11 +31,17 @@
     </header>
 
     <main>
-      <section class="diagnosis-band" aria-labelledby="diagnosisTitle">
+      <section class="diagnosis-band" id="snapshot" aria-labelledby="diagnosisTitle">
         <div class="diagnosis-copy">
           <p class="eyebrow">Current plan stress test</p>
           <h2 id="diagnosisTitle">Your lab is overcommitted.</h2>
           <p id="diagnosisText">Loading GrantPilot scenario...</p>
+          <div class="quick-actions" aria-label="Primary workflow">
+            <a class="btn btn-primary" href="#scenario">Tune scenario</a>
+            <a class="btn" href="#optimizer">Compare strategies</a>
+            <a class="btn" href="#ask">Ask GrantPilot</a>
+            <a class="btn" href="#boardMemo">Board memo</a>
+          </div>
         </div>
         <div class="decision-strip" aria-label="Current plan versus GrantPilot plan">
           <div>
@@ -71,7 +85,7 @@
         </article>
       </section>
 
-      <section class="section-block scenario-panel" aria-labelledby="scenarioTitle">
+      <section class="section-block scenario-panel" id="scenario" aria-labelledby="scenarioTitle">
         <div class="section-heading compact">
           <div>
             <p class="eyebrow">Editable scenario</p>
@@ -104,7 +118,7 @@
       </section>
 
       <section class="workspace-grid">
-        <section class="section-block" aria-labelledby="strategyTitle">
+        <section class="section-block" id="optimizer" aria-labelledby="strategyTitle">
           <div class="section-heading">
             <div>
               <p class="eyebrow">Portfolio optimizer</p>
@@ -148,7 +162,7 @@
           </div>
         </section>
 
-        <aside class="section-block" aria-labelledby="riskTitle">
+        <aside class="section-block" id="risk" aria-labelledby="riskTitle">
           <div class="section-heading compact">
             <div>
               <p class="eyebrow">Monte Carlo risk</p>
@@ -208,7 +222,7 @@
         </section>
       </section>
 
-      <section class="section-block" aria-labelledby="projectTitle">
+      <section class="section-block" id="portfolio" aria-labelledby="projectTitle">
         <div class="section-heading compact">
           <div>
             <p class="eyebrow">Project portfolio</p>
@@ -268,7 +282,7 @@
           <div class="sensitivity-list" id="sensitivityList"></div>
         </section>
 
-        <section class="section-block" aria-labelledby="askTitle">
+        <section class="section-block" id="ask" aria-labelledby="askTitle">
           <div class="section-heading compact">
             <div>
               <p class="eyebrow">Ask GrantPilot</p>
