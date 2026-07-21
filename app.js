@@ -1528,7 +1528,7 @@ const GrantPilot = (() => {
     const simulation = simulatePortfolio(metrics.ids, 1000, state.strategy.length * 31);
     const bottleneck = topBottleneck(currentMetrics);
 
-    updateText("diagnosisText", `Cash runs out in ${formatMonths(currentMetrics.runway)}, ${bottleneck.title.toLowerCase()} is constrained, and the all-project plan carries ${formatPercent(currentSim.reserveBreachRisk)} simulated financing reserve breach risk.`);
+    updateText("diagnosisText", `All-project plan: ${formatMonths(currentMetrics.runway)} runway, ${formatPercent(currentSim.reserveBreachRisk)} reserve breach risk, bottlenecked by ${bottleneck.title.toLowerCase()}.`);
     updateText("currentRunway", formatMonths(currentMetrics.runway));
     updateText("currentRisk", `${formatPercent(currentSim.reserveBreachRisk)} reserve breach risk`);
     updateText("optimizedRunway", formatMonths(metrics.runway));
